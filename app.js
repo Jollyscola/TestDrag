@@ -5,13 +5,12 @@ const alert_box = document.querySelector("#alert_box");
 const color_heading = document.querySelector(".color_heading")
 let colorWell = document.querySelector("#colorWell");
 
-
 window.addEventListener("load", startup);
 
 
 
-const table = document.querySelector(".canvas_table");
-const draggable = table.querySelectorAll(".draggable")
+const canvas_table = document.querySelector(".canvas_table");
+const draggable = canvas_table.querySelectorAll(".draggable")
 
 
 
@@ -20,134 +19,177 @@ class dragDropTable{
     constructor(){
         let draggingEle;
         let draggingColumnIndex;
-        let placeholder;
         let list;
         let isDraggingStarted = false;
         this.draggingColumnIndex = draggingColumnIndex;
-        this.placeholder = placeholder;
+
         this.list = list;
         this.isDraggingStarted = isDraggingStarted;
         this.draggingEle = draggingEle;
-        let mouseX = 0;
-        let mouseY = 0;
-        console.log(this.list)
-        this.mouseMoveHandler = this.mouseMoveHandler.bind(this);
-        this.mouseX = mouseX;
-        this.mouseY = mouseY;
+        let x = 0;
+        let y = 0;
+        this.x = x;
+        this.y = y;
     }
 
+
+    mouseUpHandler = (e) => {
+        this.placeholder && this.placeholder.parentNode.removeChild(this.placeholder);
+
+        this.draggingEle.classList.remove('dragging');
+        this.draggingEle.style.removeProperty('top');
+        this.draggingEle.style.removeProperty('left');
+        this.draggingEle.style.removeProperty('position');
+
+        // Get the end index
+        const endColumnIndex = [].slice.call(this.list.children).indexOf(this.draggingEle);
+
+        this.isDraggingStarted = false;
+        this.list.parentNode.removeChild(this.list);
+
+
+        // Move the dragged column to `endColumnIndex`
+        canvas_table.querySelectorAll('.rows').forEach((row) => {
+            const cells = [].slice.call(row.querySelectorAll('.cell_heading, .cell'));
+
+            if(this.draggingColumnIndex > endColumnIndex) cells[endColumnIndex].parentNode.insertBefore(cells[this.draggingColumnIndex],cells[endColumnIndex])
+            else cells[endColumnIndex].parentNode.insertBefore(cells[this.draggingColumnIndex],cells[endColumnIndex].nextSibling);
+            
+           
+               
+        });
+
+
+        canvas_table.style.removeProperty('visibility');
+
+       
+        document.removeEventListener('mousemove', this.mouseMoveHandler);
+        document.removeEventListener('mouseup', this.mouseUpHandler);
+    }
 
     mouseDownHandler =(e) =>{
         //række af nummer 0 eller 1
-        this.draggingColumnIndex = [].slice.call(table.querySelectorAll('.cell_heading')).indexOf(e.target)
+        this.draggingColumnIndex = [].slice.call(canvas_table.querySelectorAll('.cell_heading')).indexOf(e.target)
 
-        this.mouseX = e.clientX - e.target.offsetLeft;
-        this.mouseY = e.clientY - e.target.offsetTop;
+        this.x = e.clientX - e.target.offsetLeft;
+        this.y = e.clientY - e.target.offsetTop;
 
-        console.log(this.mouseX, this.mouseY)
-       
-       
         document.addEventListener('mousemove',this.mouseMoveHandler);
+        document.addEventListener('mouseup', this.mouseUpHandler);
     }
     mouseMoveHandler = (e) =>{
         if (!this.isDraggingStarted) {
-            console.log("isDragging")
             this.isDraggingStarted = true;
             this.cloneTable();
+            this.draggingEle = [].slice.call(this.list.children)[this.draggingColumnIndex];
+            this.draggingEle.classList.add('dragging');
+            this.placeholder = document.createElement('div');
+            this.placeholder.classList.add('placeholder');
+            this.draggingEle.parentNode.insertBefore(this.placeholder, this.draggingEle.nextSibling);
+            this.placeholder.style.width = `${this.draggingEle.offsetWidth}px`;
         }
-    }
+            this.draggingEle.style.position = 'absolute';
+            this.top = this.y - e.clientY;
+            this.left = this.x - e.clientX;
+      
+            this.x = e.clientX;
+            this.y = e.clientY;
+      
+            this.draggingEle.style.top = `${this.draggingEle.offsetTop - this.top}px`;
+            this.draggingEle.style.left = `${this.draggingEle.offsetLeft - this.left}px`;
+
+
+        
+        const prevEle = this.draggingEle.previousElementSibling;
+        const nextEle = this.placeholder.nextElementSibling;
+        if (prevEle && this.IsOnLeft(this.draggingEle, prevEle))
+        {
+            this.swap(this.placeholder, this.draggingEle);
+            this.swap(this.placeholder, prevEle);
+            return;
+        }
+        if (nextEle && this.IsOnLeft(nextEle, this.draggingEle))
+        {
+            this.swap(nextEle, this.placeholder);
+            this.swap(nextEle, this.draggingEle);
+            return;
+        }
     
+    }
+
+    swap(nodeA, nodeB){
+        const parentA = nodeA.parentNode;
+        const siblingA = nodeA.nextSibling === nodeB ? nodeA : nodeA.nextSibling;
+
+        nodeB.parentNode.insertBefore(nodeA, nodeB);
+
+        parentA.insertBefore(nodeB, siblingA);
+    };
+
+    IsOnLeft(nodeA,nodeB){
+        const rectA = nodeA.getBoundingClientRect();
+        const rectB = nodeB.getBoundingClientRect();
+        return rectA.left + rectA.width / 2 < rectB.left + rectB.width / 2;
+    }
     cloneTable(){
-        const rect = table.getBoundingClientRect();
+      
         this.list = document.createElement("div");
         this.list.classList.add("clone-list");
         this.list.style.position = "absolute";
-        this.list.style.left = `${rect.left}px`
-        this.list.style.top = `${rect.top}px`
-        console.log(this.list)
+        this.list.style.top = `${70}px`
 
-        table.parentNode.insertBefore(this.list, table);
-        
-        const originalCells = [].slice.call(table.querySelectorAll('.cell'));
+        canvas_table.style.visibility = 'hidden';
 
-        const originalHeaderCells = [].slice.call(table.querySelectorAll('.cell_heading'));
+        canvas_table.parentElement.insertBefore(this.list,canvas_table.nextSibling);
+        // canvas_table.append(this.list)
+        const originalCells = [].slice.call(canvas_table.querySelectorAll('.cell'));
+        const originalHeaderCells = [].slice.call(canvas_table.querySelectorAll('.cell_heading'));
+
+        originalHeaderCells.forEach((header,headerIndex) => {
+            const width = Number(window.getComputedStyle(header).width);
+
+            const item = document.createElement('div')
+            item.classList.add('draggable');
 
 
-        const width = parseInt(window.getComputedStyle(headerCell).width);
+            const newTable = document.createElement('div');
+            newTable.setAttribute('class', 'clone-table');
+            newTable.style.width = `${width}px`;
+            const cell_header = header.cloneNode(true);
+            let newRow = document.createElement('div')
+            newRow.classList.add("rows");
 
-        console.log(width)
-        // console.log(originalCells)
+            newRow.appendChild(cell_header);
+            newTable.appendChild(newRow);
+            
+            const cells = originalCells.filter((c,idx) => {
+                return (idx - headerIndex) % originalHeaderCells.length === 0;
+            })
+
+            cells.forEach((cell) => {
+                const newCell = cell.cloneNode(true);
+                newRow = document.createElement('div');
+                newRow.classList.add("rows");
+
+                newRow.appendChild(newCell);
+                newTable.appendChild(newRow)
+            })
+            item.appendChild(newTable);
+            this.list.appendChild(item);
+        })
+       
+       
     }
 }
 
 const drag_Drop_table = new dragDropTable().mouseDownHandler;
-table.querySelectorAll('.cell_heading').forEach((headerCell) => {
-    headerCell.classList.add('draggable');
+
+
+canvas_table.querySelectorAll('.cell_heading').forEach((headerCell) => {
+     headerCell.classList.add('draggable');
      headerCell.addEventListener('mousedown', drag_Drop_table);
 });
 
-
-
-// function table_columen(){
-//     const node = table;
-//     const rows = [...table.querySelectorAll(".rows")];
-//     const copy_table = node.cloneNode(true);
-//     const copy_rows = [...copy_table.querySelectorAll(".rows")];
-//     // const rows = copy_table.cloneNode(true);
-    
-//     // console.log(rows)
-//     const newtable = document.createElement("div")
-//     newtable.classList.add(".canvas_table")
-//     // console.log(newtable)
-//     for (let i = 0; i < draggable.length; i++) {
-//         const newRow = document.createElement("div");
-//         newRow.classList.add("rows");
-//         copy_rows.forEach(row => {
-//          const cell =  row.querySelectorAll(".cell")[0]
-//          rows.append(cell)
-//         })
-
-//     }
-    
-
-//     console.log(newtable.children)
-//     // const newrows = newtable.querySelectorAll(".rows");
-//     rows.forEach(container => {
-//         container.addEventListener('dragover', e => {
-//             e.preventDefault();
-//             // console.log(e)
-//             const afterElement = getDragAfterElement(container, e.clientX)
-//             console.log(afterElement)
-//         //     table.parentNode.removeChild(table)
-            
-//             // const afterElement = getDragAfterElement(container, e.clientX)
-//             // const draggable = document.querySelector('.dragging');
-//             if (afterElement == null) {
-//                 // console.log(afterElement)
-//                 container.appendChild(draggable)
-//               } else {
-//                 container.insertBefore(draggable, afterElement)
-//               }
-//         })
-//     })
-// }
-
-    
-
-
-//     function getDragAfterElement(container, x) {
-//         const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')]
-      
-//          return draggableElements.reduce((closest, child) => {
-//            const box = child.getBoundingClientRect()
-//            const offset = x - box.left - box.width / 2
-//            if (offset < 0 && offset > closest.offset) {
-//             return { offset: offset, element: child }
-//           } else {
-//              return closest
-//          }
-//         }, { offset: Number.NEGATIVE_INFINITY }).element
-// }
 
 function startup() {
 
@@ -279,7 +321,7 @@ class alert{
         alert_box.style.display = "block";
         alert_box.setAttribute("id","alert_box");
         this.alert_box = alert_box;
-        this.alert_container.append(this.alert_box)
+        this.alert_container.parentNode.insertBefore(this.alert_box,this.alert_container.nextSibling)
      
 
         this.update({...options});

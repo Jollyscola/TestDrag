@@ -1,10 +1,5 @@
 
 
-
-.draggable{
-    cursor: move;
-}
-
 .draggable {
     cursor: move;
     user-select: none;
@@ -24,10 +19,7 @@
 }
 .clone-table .cell_heading,
 .clone-table .cell {
-    border: 1px solid #ccc;
-    border-left: none;
-    border-top: none;
-    padding: 0.5rem;
+    display: table;
 }
 .dragging {
     background: #fff;

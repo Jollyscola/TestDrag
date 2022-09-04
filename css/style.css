@@ -539,10 +539,6 @@ select {
 
 .draggable {
   cursor: move;
-}
-
-.draggable {
-  cursor: move;
   user-select: none;
 }
 
@@ -564,16 +560,11 @@ select {
 
 .clone-table .cell_heading,
 .clone-table .cell {
-  border: 1px solid #ccc;
-  border-left: none;
-  border-top: none;
-  padding: 0.5rem;
+  display: table;
 }
 
 .dragging {
-  background: #fff;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
+  /* background: #fff; */
   z-index: 999;
 }
 
