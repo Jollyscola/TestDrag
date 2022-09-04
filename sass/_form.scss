@@ -1,0 +1,45 @@
+.form-header
+{
+    width: 100%;
+    height: 2rem;
+    display: inline-grid;
+    grid-auto-flow: column;
+    border-bottom: 0.1rem solid black;
+    background-color: lightgray;
+    &.active{
+        cursor: move;
+        user-select: none;
+    }
+}
+
+.form-header-middle{
+    display: flex;
+    justify-content: center;
+
+}
+
+.form-header-left
+{
+    background-color: lightgray;
+}
+
+.form-header-middle
+{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.form-header-right
+{
+    cursor: default;
+    background-color: lightgray;
+}
+
+.form-area
+{
+    width: 100%;
+    height: 95vh;
+    position: relative;
+}
+

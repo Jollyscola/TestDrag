@@ -1,0 +1,63 @@
+$primary: #326dee;
+$secondary: #1ac888;
+$error: #d32752;
+$info: #f6c31c;
+$black: #000;
+$yellow: #e7f711;
+$gray: #808080;
+$lightgray: #c4c4c4;
+$red: #f00303;
+$blue: #1919e6;
+$green: #19e635;
+$orange : #FF7E31;
+$purple: #9900ff;
+$white: #fff;
+$lightblue: #dddddd;
+$dark: #242424;
+$button: #DFE2EB;
+
+
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "error": $error,
+    "info": $info,
+    "blue": $blue,
+    "red": $red,
+    "yellow": $yellow,
+    "green": $green,
+    "orange": $orange,
+    "purple": $purple,
+    "gray": $gray,
+    "black": $black,
+    "white": $white,
+    "lightblue": $lightblue,
+    "lightgray": $lightgray,
+    "button": $button
+);
+
+
+$base-top-0: 0;
+$base-left-0: 0;
+$base-box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.23), 0rem 0.8rem 1.6rem rgba(0, 0, 0, 0.08);
+$base-box-shadow-l:0 1.5rem 3.5rem 0 rgba(60 66 87 / 8%), 0 0.05rem 1.5rem 0 rgb(0 0 0 / 12%);
+//spacing
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+
+// borders
+$base-border-thickness: 0.1rem;
+$base-border-radius: 2rem;
+
+// box-shadow
+$base-box-shadow: 0.1rem 0.3rem 0.5rem rgbg(0,0,0,0.1);
+$base-table-shadow: 0 0.2rem 0.4rem rgb(36 36 36 / 40%);
+//font sizes
+
+$base-font-size: 1rem;
+$font-size-sm: $base-font-size * 0.75;
+$font-size-lg: $base-font-size * 1.5;
+$font-size-xl: $base-font-size * 2;
+$font-size-xxl: $base-font-size * 3;
+
+$base-padding-left-right: 2.4rem;

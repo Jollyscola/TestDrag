@@ -1,0 +1,37 @@
+
+
+
+.draggable{
+    cursor: move;
+}
+
+.draggable {
+    cursor: move;
+    user-select: none;
+}
+.placeholder {
+    background-color: #edf2f7;
+    border: 2px dashed #cbd5e0;
+}
+.clone-list {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    display: flex;
+}
+.clone-table {
+    border-collapse: collapse;
+    border: none;
+}
+.clone-table .cell_heading,
+.clone-table .cell {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    padding: 0.5rem;
+}
+.dragging {
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    z-index: 999;
+}

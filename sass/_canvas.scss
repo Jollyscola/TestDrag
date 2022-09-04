@@ -1,0 +1,160 @@
+
+.canvas{
+    top:50%;
+    left:50%;
+    width: 65rem;
+    resize: both;
+    overflow: hidden;
+    position: absolute;
+    background: white;
+    border: solid black 1px;
+    transform: translate(-50%,-50%);
+}
+
+.canvas-2
+{
+	display:grid;
+	row-gap: 0.2rem;
+    overflow: hidden;
+	grid-template-columns:repeat(auto-fit,minmax(45rem,1fr));
+
+    
+}
+
+.canvas-5
+{
+    display: grid;
+    row-gap: 0.2rem;
+    overflow: hidden;
+    grid-template-columns:repeat(auto-fit,minmax(26rem,1fr));
+}
+
+
+.canvas .button
+{
+    display:flex;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.canvas_colum
+{
+    
+    gap:0.2rem;
+    display:grid;
+    margin:2rem 3rem;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+    p
+    {
+        margin:0.2rem;
+        display:inline-flex;
+        span
+        {
+            width:8rem;
+            display:inline-block;
+        }
+    }
+
+    .fieldset
+    {  
+        padding: 0.5rem;
+        margin-top: 1rem;
+    }
+
+   .canvas
+   {
+       display:block;
+       padding:0.2rem 0.5rem;
+       span
+       {
+           width:7rem;
+           padding-left: 0.5rem;
+           display:inline-block;
+       }
+   }
+}
+
+.canvas_radio
+{
+    width:9rem;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    margin: 0.2rem 0.4rem;
+
+    p
+    {
+        width:3rem;
+        margin-right:1rem;
+        display:inline-block;
+    }
+
+    .radio
+    {
+        top: 0.4rem;
+        position: absolute;
+        display:inline-flex;
+    }
+}
+
+.canvas_heading
+{
+	width: 100%;
+    margin-left:0.5rem;
+	justify-content: center;
+    label{
+        margin-left: 3.5rem;
+        margin-right: 3.5rem;
+    }
+    &.active{
+        cursor: move;
+        user-select: none;
+    }
+}
+
+
+
+.canvas_search
+{
+	width: 100%;
+    margin: 0.2rem 0rem 1.3rem 2.7rem;
+	justify-content: center;
+    span{
+        margin: 0.2rem 0.4rem;
+    }
+}
+
+
+.canvas_table
+{
+    display:table;
+    width:100%;
+        .rows 
+        {
+            display:table-row
+        }
+        .cell_heading{
+            display:table-cell;
+            line-height: 1.42857143;
+            padding: 0rem 0.4rem;
+        }
+        .cell{
+            display:table-cell;
+            line-height: 1.42857143;
+            padding: 0rem 0.4rem;
+        }
+    input
+    {
+    display:inline;
+    margin: 0.2rem 0.4rem;
+    }
+
+}
+
+
+

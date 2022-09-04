@@ -1,0 +1,40 @@
+
+button
+{
+	padding: 0.4rem;
+	font-size: 1.2rem;
+	cursor: pointer;
+	position: relative;
+	text-align: center;
+	border-radius: 2rem;
+	transition: all 0.2s;
+	display: inline-block;
+	text-decoration: none;
+	border: 0.16em solid rgba(black, 0);
+}
+
+
+
+@for $i from 1 through 9 {
+	.btn-#{$i}
+	{
+		width:($i) + 0rem;
+		font-size: 1.2rem;
+		font-weight: bold;
+		padding: 0.7rem 1.4rem;
+		text-shadow: 0 0.04em 0.04em rgba(black, 0.35);
+
+		.btn-#{$i}:hover
+		{
+			transform: scale(1.05);
+			box-shadow: 0.2rem 0.2rem 0.2rem rgba(black, 0.2);
+		}
+
+		.btn-#{$i}:active
+		{
+			background-color: rgba(black, 5);
+		}
+	}
+	
+}
+

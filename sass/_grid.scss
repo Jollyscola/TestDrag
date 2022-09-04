@@ -1,0 +1,50 @@
+@use "sass:math";
+
+$grid-columns: 12;
+$pixal: 30;
+// $grid-gaps: (
+//   "0": 0,
+//   "1": 10px,
+//   "2": 20px,
+//   "3": 30px,
+$layout-values: flex-start, flex-end, center, space-between, space-around;
+
+.container {
+   position: relative;
+  max-width: 100%;
+}
+
+
+.mobil{ 
+  display:none;
+}
+
+
+
+@include lg_max_table{
+   .form-area{
+      overflow: scroll;
+      position: relative;
+      display:block;
+      max-width:100%;
+   }
+   .canvas{
+     
+      
+      all:unset;
+      font-size: 1rem;
+      margin-top:2rem;
+      position: relative;
+      width:100%;
+      max-width:100%;
+      top:2rem;
+      display:block;
+      border: none;
+      resize: none;
+   }
+   .form-header-middle{
+      background-color: transparent;
+
+   }
+
+}

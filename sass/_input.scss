@@ -1,0 +1,44 @@
+input:enabled,
+input[enabled=enabled]
+{
+	border: none;
+	font-size: 14px;
+	font-weight: normal;
+	margin:0rem 0.7rem 0rem 1rem;
+	transition: all 0.18s ease;
+	border-bottom: 0.2rem solid black;
+}
+
+
+input:disabled,
+input[disabled=disabled]
+{
+	border: none;
+	font-size: 1.4rem;
+	font-weight: normal;
+	margin:0rem 0.7rem 0rem 1rem;
+	transition: all 0.18s ease;
+	border-bottom: 0.2rem dotted black;
+}
+
+input.invalid
+{
+	border-bottom: 0.2rem solid red;
+}
+
+textarea.invalid
+{
+	border-bottom: 0.2rem solid red;
+}
+
+select
+{
+	border: none;
+	background-color: transparent;
+	border-bottom: 0.2rem solid black;
+}
+
+.green
+{
+	color: green;
+}

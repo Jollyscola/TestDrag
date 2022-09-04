@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+ 
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+    <div class="page-header heading"></div>
+        <div class="form-area">
+            <div class="canvas">
+                <div class="form-header heading">
+                    <div class="form-header-middle">
+                        Phonebook
+                    </div>
+                </div>
+                <div class="canvas-5">
+                    <div class="canvas_colum">
+                        <span class="canvas_search"><input name="filter" bind="search" placeholder="search"></span>
+                        <div class="canvas_table">
+                            <div class="rows">
+                                <!-- <div class="indicator"></div> -->
+                                <div class="draggable cell_heading canvas_heading" draggable="true">FirstName</label></div>
+                                <div class="draggable cell_heading canvas_heading" draggable="true">LastName</label></div>
+                            </div>
+                            <div class="rows">
+                                <!-- <div><div class="indicator"><span bind="employees" type="row-indicator"></span></div></div> -->
+                                <div class="cell"><input size="10" value="Poul" name="first_name" class="table" autocomplete="do-not-autofill"></div>
+                                <div class="cell"><input size="10" value="Hans"name="last_name" class="table" autocomplete="do-not-autofill"></div>
+                            </div>
+                            <div class="rows">
+                                <!-- <div><div class="indicator"><span bind="employees" type="row-indicator"></span></div></div> -->
+                                <div class="cell"><input size="10" value="Poul" name="first_name" class="table" autocomplete="do-not-autofill"></div>
+                                <div class="cell"><input size="10" value="Hans"name="last_name" class="table" autocomplete="do-not-autofill"></div>
+                            </div>
+                            <div class="rows">
+                                <!-- <div><div class="indicator"><span bind="employees" type="row-indicator"></span></div></div> -->
+                                <div class="cell"><input size="10" value="Poul" name="first_name" class="table" autocomplete="do-not-autofill"></div>
+                                <div class="cell"><input size="10" value="Hans"name="last_name" class="table" autocomplete="do-not-autofill"></div>
+                            </div>
+                            <div class="rows">
+                                <!-- <div><div class="indicator"><span bind="employees" type="row-indicator"></span></div></div> -->
+                                <div class="cell"><input size="10" value="Poul" name="first_name" class="table" autocomplete="do-not-autofill"></div>
+                                <div class="cell"><input size="10" value="Hans"name="last_name" class="table" autocomplete="do-not-autofill"></div>
+                            </div>
+                            <div class="rows">
+                                <!-- <div><div class="indicator"><span bind="employees" type="row-indicator"></span></div></div> -->
+                                <div class="cell"><input size="10" value="Poul" name="first_name" class="table" autocomplete="do-not-autofill"></div>
+                                <div class="cell"><input size="10" value="Hans"name="last_name" class="table" autocomplete="do-not-autofill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="canvas_colum">
+                        <p>
+                            <span>First Name</span>:
+                            <input size="10" name="first_name" class="detail" initcap required
+                                autocomplete="do-not-autofill">
+                        </p>
+                        <p>
+                            <span>Last Name</span>:
+                            <input size="10" name="last_name" class="detail" initcap required
+                                autocomplete="do-not-autofill">
+                        </p>
+                        <p>
+                            <span>Phone</span>:
+                            <input size="20" name="phone_number" class="detail" required autocomplete="do-not-autofill">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+                <label for="colorWell">Color:</label>
+                <input type="color" value="#c4c4c4" id="colorWell">
+                <label for="head">Head</label>
+            </div>
+
+            <button class="btn-4" onclick="alert_call()">Alert</button>
+            <button class="btn-4" style="float:right" onclick="alert_call()">Alert</button>
+    </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
