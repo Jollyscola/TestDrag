@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.heading {
+  background-color: lightgray;
+}
+
 *,
 *::after,
 *::before {
@@ -17,10 +21,6 @@ body {
   font-weight: 600;
   line-height: 1.7;
   font-family: "Lato", sans-serif;
-}
-
-.heading {
-  background-color: lightgray;
 }
 
 .canvas {
@@ -138,6 +138,20 @@ body {
   display: table-cell;
   line-height: 1.42857143;
   padding: 0rem 0.4rem;
+}
+.canvas_table .cell_heading .moveable {
+  display: inline-flex;
+  margin-right: 0.2rem;
+  width: 1rem;
+  user-select: none;
+}
+.canvas_table .cell_heading .moveable::before {
+  cursor: move;
+  content: "↔";
+  display: inline-flex;
+}
+.canvas_table .cell_heading .heading_text {
+  display: inline-flex;
 }
 .canvas_table .cell {
   display: table-cell;
@@ -557,6 +571,17 @@ select {
   border-collapse: collapse;
   border: none;
 }
+.clone-table .moveable {
+  display: inline-flex;
+  margin-right: 0.5rem;
+  width: 1rem;
+  user-select: none;
+}
+.clone-table .moveable::before {
+  cursor: move;
+  content: "↔";
+  display: inline-flex;
+}
 
 .clone-table .cell_heading,
 .clone-table .cell {
@@ -564,7 +589,9 @@ select {
 }
 
 .dragging {
-  /* background: #fff; */
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   z-index: 999;
 }
 

@@ -16,10 +16,23 @@
 .clone-table {
     border-collapse: collapse;
     border: none;
+        .moveable{
+            display:inline-flex;
+            margin-right:0.5rem;
+            width:1rem;
+            user-select: none;
+            &::before{
+                cursor: move;
+                content: "\2194";
+                display:inline-flex;
+          
+        }
+    }
 }
 .clone-table .cell_heading,
 .clone-table .cell {
     display: table;
+
 }
 .dragging {
     background: #fff;
@@ -27,3 +40,4 @@
     border-top: 1px solid #ccc;
     z-index: 999;
 }
+

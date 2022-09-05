@@ -138,12 +138,33 @@
         {
             display:table-row
         }
-        .cell_heading{
+        .cell_heading
+        {
             display:table-cell;
             line-height: 1.42857143;
             padding: 0rem 0.4rem;
+            
+            .moveable{
+                display:inline-flex;
+                
+                margin-right:0.2rem;
+                width:1rem;
+                user-select: none;
+                &::before{
+                    cursor: move;
+                    content: "\2194";
+                    display:inline-flex;
+              
+            }
         }
-        .cell{
+        .heading_text{
+            display:inline-flex;
+        }
+            
+            
+        }
+        .cell
+        {
             display:table-cell;
             line-height: 1.42857143;
             padding: 0rem 0.4rem;

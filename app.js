@@ -32,21 +32,41 @@ class dragDropTable{
         this.y = y;
     }
 
+    mouseDownHandler =(e) =>{
+        //række af nummer 0 eller 1
+        this.draggingColumnIndex = [].slice.call(canvas_table.querySelectorAll('.moveable')).indexOf(e.target)
+
+        this.x = e.clientX - e.target.offsetLeft;
+        this.y = e.clientY - e.target.offsetTop;
+
+        document.addEventListener('mousemove',this.mouseMoveHandler);
+        document.addEventListener('mouseup', this.mouseUpHandler);
+    }
+
 
     mouseUpHandler = (e) => {
-        this.placeholder && this.placeholder.parentNode.removeChild(this.placeholder);
-
+        console.log(this.placeholder)
+        if( this.placeholder && this.placeholder !== null){
+            if(this.placeholder.parentNode){
+            this.placeholder.parentNode.removeChild(this.placeholder)
+         }
+        }
+        if(this.draggingEle)
+        {
         this.draggingEle.classList.remove('dragging');
         this.draggingEle.style.removeProperty('top');
         this.draggingEle.style.removeProperty('left');
         this.draggingEle.style.removeProperty('position');
 
+        console.log(this.draggingEle)
         // Get the end index
         const endColumnIndex = [].slice.call(this.list.children).indexOf(this.draggingEle);
 
         this.isDraggingStarted = false;
+        if(this.list.parentNode)
+        {
         this.list.parentNode.removeChild(this.list);
-
+        }
 
         // Move the dragged column to `endColumnIndex`
         canvas_table.querySelectorAll('.rows').forEach((row) => {
@@ -59,29 +79,25 @@ class dragDropTable{
                
         });
 
-
         canvas_table.style.removeProperty('visibility');
 
        
         document.removeEventListener('mousemove', this.mouseMoveHandler);
         document.removeEventListener('mouseup', this.mouseUpHandler);
+       
+        }
+    
     }
 
-    mouseDownHandler =(e) =>{
-        //række af nummer 0 eller 1
-        this.draggingColumnIndex = [].slice.call(canvas_table.querySelectorAll('.cell_heading')).indexOf(e.target)
 
-        this.x = e.clientX - e.target.offsetLeft;
-        this.y = e.clientY - e.target.offsetTop;
-
-        document.addEventListener('mousemove',this.mouseMoveHandler);
-        document.addEventListener('mouseup', this.mouseUpHandler);
-    }
     mouseMoveHandler = (e) =>{
         if (!this.isDraggingStarted) {
             this.isDraggingStarted = true;
             this.cloneTable();
+            console.log(this.list)
+            console.log(this.draggingColumnIndex)
             this.draggingEle = [].slice.call(this.list.children)[this.draggingColumnIndex];
+            console.log(this.draggingEle)
             this.draggingEle.classList.add('dragging');
             this.placeholder = document.createElement('div');
             this.placeholder.classList.add('placeholder');
@@ -114,7 +130,6 @@ class dragDropTable{
             this.swap(nextEle, this.draggingEle);
             return;
         }
-    
     }
 
     swap(nodeA, nodeB){
@@ -141,7 +156,6 @@ class dragDropTable{
         canvas_table.style.visibility = 'hidden';
 
         canvas_table.parentElement.insertBefore(this.list,canvas_table.nextSibling);
-        // canvas_table.append(this.list)
         const originalCells = [].slice.call(canvas_table.querySelectorAll('.cell'));
         const originalHeaderCells = [].slice.call(canvas_table.querySelectorAll('.cell_heading'));
 
@@ -185,7 +199,7 @@ class dragDropTable{
 const drag_Drop_table = new dragDropTable().mouseDownHandler;
 
 
-canvas_table.querySelectorAll('.cell_heading').forEach((headerCell) => {
+canvas_table.querySelectorAll('.moveable').forEach((headerCell) => {
      headerCell.classList.add('draggable');
      headerCell.addEventListener('mousedown', drag_Drop_table);
 });
