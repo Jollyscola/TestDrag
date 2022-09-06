@@ -18,7 +18,7 @@ button
 @for $i from 1 through 9 {
 	.btn-#{$i}
 	{
-		width:($i) + 0rem;
+		// width:($i) + 0rem;
 		font-size: 1.2rem;
 		font-weight: bold;
 		padding: 0.7rem 1.4rem;

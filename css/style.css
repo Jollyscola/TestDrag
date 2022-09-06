@@ -177,7 +177,6 @@ button {
 }
 
 .btn-1 {
-  width: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -192,7 +191,6 @@ button {
 }
 
 .btn-2 {
-  width: 2rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -207,7 +205,6 @@ button {
 }
 
 .btn-3 {
-  width: 3rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -222,7 +219,6 @@ button {
 }
 
 .btn-4 {
-  width: 4rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -237,7 +233,6 @@ button {
 }
 
 .btn-5 {
-  width: 5rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -252,7 +247,6 @@ button {
 }
 
 .btn-6 {
-  width: 6rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -267,7 +261,6 @@ button {
 }
 
 .btn-7 {
-  width: 7rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -282,7 +275,6 @@ button {
 }
 
 .btn-8 {
-  width: 8rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -297,7 +289,6 @@ button {
 }
 
 .btn-9 {
-  width: 9rem;
   font-size: 1.2rem;
   font-weight: bold;
   padding: 0.7rem 1.4rem;
@@ -551,6 +542,28 @@ select {
   position: relative;
 }
 
+.colors_container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.changestyle {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.fieldset {
+  background-color: white;
+  width: 300px;
+  justify-self: center;
+  display: block;
+  margin: 0px auto;
+}
+
 .draggable {
   cursor: move;
   user-select: none;
@@ -623,7 +636,7 @@ select {
     border: none;
     resize: none;
   }
-  .form-header-middle {
+  .form-header {
     background-color: transparent;
   }
 }

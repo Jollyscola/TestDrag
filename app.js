@@ -3,12 +3,6 @@ const form_area = document.querySelector(".form-area");
 const canvas = document.querySelectorAll(".canvas");
 const alert_box = document.querySelector("#alert_box");
 const color_heading = document.querySelector(".color_heading")
-let colorWell = document.querySelector("#colorWell");
-
-window.addEventListener("load", startup);
-
-
-
 const canvas_table = document.querySelector(".canvas_table");
 const draggable = canvas_table.querySelectorAll(".draggable")
 
@@ -58,7 +52,6 @@ class dragDropTable{
         this.draggingEle.style.removeProperty('left');
         this.draggingEle.style.removeProperty('position');
 
-        console.log(this.draggingEle)
         // Get the end index
         const endColumnIndex = [].slice.call(this.list.children).indexOf(this.draggingEle);
 
@@ -165,7 +158,6 @@ class dragDropTable{
             const item = document.createElement('div')
             item.classList.add('draggable');
 
-
             const newTable = document.createElement('div');
             newTable.setAttribute('class', 'clone-table');
             newTable.style.width = `${width}px`;
@@ -197,38 +189,60 @@ class dragDropTable{
 }
 
 const drag_Drop_table = new dragDropTable().mouseDownHandler;
-
-
 canvas_table.querySelectorAll('.moveable').forEach((headerCell) => {
      headerCell.classList.add('draggable');
      headerCell.addEventListener('mousedown', drag_Drop_table);
 });
 
 
-function startup() {
-
-     colorWell.addEventListener("input", updateFirst);
-     colorWell.addEventListener("change", updateAll);
-    colorWell.select();
-  }
 
 
 
-  function updateAll(event) {
-    document.querySelectorAll(".heading").forEach((heading) => {
-      heading.style.backgroundColor  = event.target.value;
-    });
-  }
 
-  function updateFirst(event) {
-      
-    localStorage.setItem("heading",event.target.value);
-     const heading = document.querySelector(".heading");
-     if (heading) {
-        heading.style.backgroundColor  = event.target.value;
-     }
-  }
+class ColorInput
+{
 
+    constructor(color){
+        this.color = color;
+    }
+
+    updateAll =(event) => 
+    {
+      const element = document.querySelectorAll(".heading")
+      element.forEach((e) => 
+        {
+            console.log(this.element);
+            switch(this.color.id)
+            {
+                case "heading_text": 
+                    e.style.color = event.target.value;
+                    localStorage.setItem("heading_text",event.target.value);
+                break;
+                case "heading_background":
+                    e.style.backgroundColor  = event.target.value;
+                    localStorage.setItem("heading_color",event.target.value);
+                break;    
+                case "body_color":
+                    e.style.backgroundColor  = event.target.value;
+                    localStorage.setItem("body",event.target.value);
+                break;  
+            }
+            
+            
+       })
+    }
+    startup = () => {
+        console.log(this.element)
+        localStorage.clear();
+        this.color.addEventListener("input", this.updateAll);
+        this.color.select();
+    }
+}
+
+
+window.addEventListener("load", new ColorInput(document.querySelector("#heading_text")).startup);
+window.addEventListener("load", new ColorInput(document.querySelector("#heading_background")).startup);
+window.addEventListener("load", new ColorInput(document.querySelector("#body_color")).startup);
 
 
 class dragElement {
@@ -280,6 +294,8 @@ class dragElement {
           if(e.matches){
               this.element.style.top = null;
               this.element.style.left = null;
+              this.element.style.width = null;
+              this.element.style.height = null;
           }
       })
     };
@@ -287,12 +303,12 @@ class dragElement {
         this.dragzone.onmousedown = this.dragMouseDown;
     }
     
-  };
+};
 
-canvas.forEach((canva) => {
+canvas.forEach((c) => {
 
-    const header = canva.querySelector(".form-header");
-     new dragElement(canva, header).create();
+    const header = c.querySelector(".form-header");
+     new dragElement(c, header).create();
 })
 
 
@@ -331,13 +347,20 @@ class alert{
         this.alert_title = alert_title;
         this.alert_row = alert_row
         this.alert_container = alert_container;
+        console.log(this.alert_container)
         alert_box.style.zIndex = "40";
         alert_box.style.display = "block";
         alert_box.setAttribute("id","alert_box");
         this.alert_box = alert_box;
-        this.alert_container.parentNode.insertBefore(this.alert_box,this.alert_container.nextSibling)
+       const rect = this.alert_box.getBoundingClientRect();
+        console.log(rect.left)
+        if(rect.left < 50)
+        {
+            console.log("rect")
+            this.alert_box.style.left = `${200}px`;
      
-
+        }
+        this.alert_container.parentNode.insertBefore(this.alert_box,this.alert_container.nextSibling)
         this.update({...options});
     }
 
@@ -355,7 +378,13 @@ class alert{
 
     
     create(){
-      
+        
+        const heading_color = localStorage.getItem('heading_color')
+        const text_color = localStorage.getItem('heading_text')
+        console.log(text_color,heading_color)
+        this.alert_header.style.backgroundColor = heading_color;
+        this.alert_header.style.Color = text_color;
+
        const title = this.alerttitle();
        const close = this.alertclose();
        const header = this.alertheader(close);
@@ -429,3 +458,16 @@ class alert{
     }
 }
 
+
+function moveable(e){
+    const draggable = canvas_table.querySelectorAll(".draggable")
+    console.log(draggable)
+    draggable.forEach(drag => {
+        if (e.target.checked == true){
+            drag.style.visibility = "visible";
+        } else {
+            drag.style.visibility = "hidden";
+        }
+    })
+  
+}

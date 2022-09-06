@@ -28,13 +28,17 @@
                             <div class="rows">
                                 <div></div>
                                 <div class="cell_heading canvas_heading">
-                                    <div class="moveable"></div>
+                                    <!-- <div style="wdith:20px; display:inline-block"> -->
+                                        <div class="moveable"></div>
+                                    <!-- </div> -->
                                     <div class="heading_text">
                                         FirstName
                                     </div>
                                 </div>
                                 <div class="cell_heading canvas_heading">
-                                  <div class="moveable"></div>
+                                    <!-- <div style="wdith:20px; display:inline-block"> -->
+                                     <div class="moveable"></div>
+                                <!-- </div> -->
                                   <div class="heading_text">
                                     LastName
                                   </div>
@@ -86,15 +90,40 @@
                 </div>
             </div>
             
-            <div>
-
-                <label for="colorWell">Color:</label>
-                <input type="color" value="#c4c4c4" id="colorWell">
-                <label for="head">Head</label>
+            <div class="colors_container">
+            <fieldset class="fieldset">
+                <legend>Heading</legend>
+                    <div class="changestyle">
+                        <label for="colorWell">Color:</label>
+                        <input type="color" value="#c4c4c4" id="heading_background">
+                        <label for="head" class="label">Head</label>
+                    </div>
+                    <div class="changestyle">
+                        <label for="colorWell">Color:</label>
+                        <input type="color" value="#000000" id="heading_text">
+                        <label for="head">Text</label>
+                    </div>  
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend>Body</legend>
+                <div class="changestyle">
+                    <label for="colorWell">Color:</label>
+                    <input type="color" value="#FFFFFF" id="body_color">
+                </div>
+            </fieldset>
+            <fieldset class="fieldset">
+                <legend>Moveable</legend>
+                <div class="changestyle">
+                    moveable table
+                    <input type="checkbox" id="myCheck" onclick="moveable(event)" checked>
+                </div>
+            </fieldset>
+            <div class="changestyle">
+                <button class="btn" onclick="alert_call()">Alert</button>
+                <button class="btn style="float:right" onclick="alert_call()">Alert</button>
             </div>
-
-            <button class="btn-4" onclick="alert_call()">Alert</button>
-            <button class="btn-4" style="float:right" onclick="alert_call()">Alert</button>
+            </div>
+        </div>
     </div>
     </div>
     <script src="app.js"></script>
