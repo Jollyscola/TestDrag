@@ -9,6 +9,7 @@
     background: white;
     border: solid black 1px;
     transform: translate(-50%,-50%);
+    z-index:20;
 }
 
 .canvas-2
@@ -130,6 +131,10 @@
 }
 
 
+.canvas_size{
+    position: relative;
+}
+
 .canvas_table
 {
     display:table;
@@ -144,7 +149,7 @@
             line-height: 1.42857143;
             padding: 0rem 0.4rem;
             
-            .moveable{
+            .arrow_left_right{
                 display:inline-flex;
                 
                 margin-right:0.2rem;
@@ -179,3 +184,43 @@
 
 
 
+.draggable {
+    cursor: move;
+    user-select: none;
+}
+.placeholder {
+    background-color: #edf2f7;
+    border: 2px dashed #cbd5e0;
+}
+.clone-list {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    display: flex;
+}
+.clone-table {
+    border-collapse: collapse;
+    border: none;
+        .arrow_left_right{
+            display:inline-flex;
+            margin-right:0.5rem;
+            width:1rem;
+            user-select: none;
+            &::before{
+                cursor: move;
+                content: "\2194";
+                display:inline-flex;
+          
+        }
+    }
+}
+.clone-table .cell_heading,
+.clone-table .cell {
+    display: table;
+
+}
+.dragging {
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    z-index: 999;
+}

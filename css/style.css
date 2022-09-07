@@ -33,6 +33,7 @@ body {
   background: white;
   border: solid black 1px;
   transform: translate(-50%, -50%);
+  z-index: 20;
 }
 
 .canvas-2 {
@@ -127,6 +128,10 @@ body {
   margin: 0.2rem 0.4rem;
 }
 
+.canvas_size {
+  position: relative;
+}
+
 .canvas_table {
   display: table;
   width: 100%;
@@ -139,13 +144,13 @@ body {
   line-height: 1.42857143;
   padding: 0rem 0.4rem;
 }
-.canvas_table .cell_heading .moveable {
+.canvas_table .cell_heading .arrow_left_right {
   display: inline-flex;
   margin-right: 0.2rem;
   width: 1rem;
   user-select: none;
 }
-.canvas_table .cell_heading .moveable::before {
+.canvas_table .cell_heading .arrow_left_right::before {
   cursor: move;
   content: "↔";
   display: inline-flex;
@@ -161,6 +166,50 @@ body {
 .canvas_table input {
   display: inline;
   margin: 0.2rem 0.4rem;
+}
+
+.draggable {
+  cursor: move;
+  user-select: none;
+}
+
+.placeholder {
+  background-color: #edf2f7;
+  border: 2px dashed #cbd5e0;
+}
+
+.clone-list {
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  display: flex;
+}
+
+.clone-table {
+  border-collapse: collapse;
+  border: none;
+}
+.clone-table .arrow_left_right {
+  display: inline-flex;
+  margin-right: 0.5rem;
+  width: 1rem;
+  user-select: none;
+}
+.clone-table .arrow_left_right::before {
+  cursor: move;
+  content: "↔";
+  display: inline-flex;
+}
+
+.clone-table .cell_heading,
+.clone-table .cell {
+  display: table;
+}
+
+.dragging {
+  background: #fff;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  z-index: 999;
 }
 
 button {
@@ -562,50 +611,6 @@ select {
   justify-self: center;
   display: block;
   margin: 0px auto;
-}
-
-.draggable {
-  cursor: move;
-  user-select: none;
-}
-
-.placeholder {
-  background-color: #edf2f7;
-  border: 2px dashed #cbd5e0;
-}
-
-.clone-list {
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-  display: flex;
-}
-
-.clone-table {
-  border-collapse: collapse;
-  border: none;
-}
-.clone-table .moveable {
-  display: inline-flex;
-  margin-right: 0.5rem;
-  width: 1rem;
-  user-select: none;
-}
-.clone-table .moveable::before {
-  cursor: move;
-  content: "↔";
-  display: inline-flex;
-}
-
-.clone-table .cell_heading,
-.clone-table .cell {
-  display: table;
-}
-
-.dragging {
-  background: #fff;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
-  z-index: 999;
 }
 
 .container {

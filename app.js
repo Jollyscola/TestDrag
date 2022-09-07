@@ -4,9 +4,14 @@ const canvas = document.querySelectorAll(".canvas");
 const alert_box = document.querySelector("#alert_box");
 const color_heading = document.querySelector(".color_heading")
 const canvas_table = document.querySelector(".canvas_table");
+const canvas_info = document.querySelector(".canvas_info");
 const draggable = canvas_table.querySelectorAll(".draggable")
+const dragContainer =  canvas_info.querySelectorAll(".drag_conainter");
+console.log(dragContainer)
 
+class dragDrop{
 
+}
 
 
 class dragDropTable{
@@ -27,8 +32,7 @@ class dragDropTable{
     }
 
     mouseDownHandler =(e) =>{
-        //række af nummer 0 eller 1
-        this.draggingColumnIndex = [].slice.call(canvas_table.querySelectorAll('.moveable')).indexOf(e.target)
+        this.draggingColumnIndex = [].slice.call(canvas_table.querySelectorAll('.arrow_left_right')).indexOf(e.target)
 
         this.x = e.clientX - e.target.offsetLeft;
         this.y = e.clientY - e.target.offsetTop;
@@ -38,7 +42,7 @@ class dragDropTable{
     }
 
 
-    mouseUpHandler = (e) => {
+    mouseUpHandler = () => {
         console.log(this.placeholder)
         if( this.placeholder && this.placeholder !== null){
             if(this.placeholder.parentNode){
@@ -60,8 +64,6 @@ class dragDropTable{
         {
         this.list.parentNode.removeChild(this.list);
         }
-
-        // Move the dragged column to `endColumnIndex`
         canvas_table.querySelectorAll('.rows').forEach((row) => {
             const cells = [].slice.call(row.querySelectorAll('.cell_heading, .cell'));
 
@@ -144,9 +146,10 @@ class dragDropTable{
         this.list = document.createElement("div");
         this.list.classList.add("clone-list");
         this.list.style.position = "absolute";
-        this.list.style.top = `${70}px`
-
+        this.list.style.top = `${0}px`
+        
         canvas_table.style.visibility = 'hidden';
+        canvas_table.style.position = ""
 
         canvas_table.parentElement.insertBefore(this.list,canvas_table.nextSibling);
         const originalCells = [].slice.call(canvas_table.querySelectorAll('.cell'));
@@ -189,15 +192,14 @@ class dragDropTable{
 }
 
 const drag_Drop_table = new dragDropTable().mouseDownHandler;
-canvas_table.querySelectorAll('.moveable').forEach((headerCell) => {
+canvas_table.querySelectorAll('.arrow_left_right').forEach((headerCell) => {
      headerCell.classList.add('draggable');
      headerCell.addEventListener('mousedown', drag_Drop_table);
 });
 
-
-
-
-
+const colors = {
+    body: document.querySelector("body")
+}
 
 class ColorInput
 {
@@ -208,10 +210,8 @@ class ColorInput
 
     updateAll =(event) => 
     {
-      const element = document.querySelectorAll(".heading")
-      element.forEach((e) => 
+        document.querySelectorAll(".heading").forEach((e) => 
         {
-            console.log(this.element);
             switch(this.color.id)
             {
                 case "heading_text": 
@@ -222,17 +222,16 @@ class ColorInput
                     e.style.backgroundColor  = event.target.value;
                     localStorage.setItem("heading_color",event.target.value);
                 break;    
-                case "body_color":
-                    e.style.backgroundColor  = event.target.value;
-                    localStorage.setItem("body",event.target.value);
-                break;  
             }
-            
-            
-       })
+        })
+        if(this.color.id == "body_color"){
+            colors.body.style.backgroundColor  = event.target.value;
+            localStorage.setItem("body",event.target.value);
+        }
+                   
     }
+    
     startup = () => {
-        console.log(this.element)
         localStorage.clear();
         this.color.addEventListener("input", this.updateAll);
         this.color.select();
@@ -383,7 +382,7 @@ class alert{
         const text_color = localStorage.getItem('heading_text')
         console.log(text_color,heading_color)
         this.alert_header.style.backgroundColor = heading_color;
-        this.alert_header.style.Color = text_color;
+        this.alert_header.style.color = text_color;
 
        const title = this.alerttitle();
        const close = this.alertclose();
@@ -461,7 +460,6 @@ class alert{
 
 function moveable(e){
     const draggable = canvas_table.querySelectorAll(".draggable")
-    console.log(draggable)
     draggable.forEach(drag => {
         if (e.target.checked == true){
             drag.style.visibility = "visible";
