@@ -1,15 +1,12 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "outDir": "dist",
-    "strict": false,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "module": "es6",
+    "sourceMap": true,
     "declaration": true,
+    "esModuleInterop": true,
+    "moduleResolution":"Node",
+    "experimentalDecorators": true,
+    "outDir": "./dist",
   }
 }

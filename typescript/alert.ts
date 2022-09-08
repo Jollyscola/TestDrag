@@ -12,7 +12,7 @@ export class alert implements EventListenerObject{
     private message:string = "";
 
 
-    private options:alert
+    protected options:alert
     private alert_button:HTMLElement;
     private alert_header:HTMLElement;
     private alert_title:HTMLElement;
@@ -38,7 +38,7 @@ export class alert implements EventListenerObject{
         this.alert_header = alert_header;
         this.alert_title = alert_title;
         this.alert_row = alert_row
-        alert_box.style.zIndex = "40";
+        alert_box.style.zIndex = "999";
         alert_box.style.display = "block";
         alert_box.setAttribute("id","alert_box");
         this.alert_box = alert_box;

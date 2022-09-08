@@ -32,6 +32,7 @@ class dragDropTable{
     }
 
     mouseDownHandler =(e) =>{
+        console.log(e.target)
         this.draggingColumnIndex = [].slice.call(canvas_table.querySelectorAll('.arrow_left_right')).indexOf(e.target)
 
         this.x = e.clientX - e.target.offsetLeft;
@@ -89,10 +90,8 @@ class dragDropTable{
         if (!this.isDraggingStarted) {
             this.isDraggingStarted = true;
             this.cloneTable();
-            console.log(this.list)
-            console.log(this.draggingColumnIndex)
+     
             this.draggingEle = [].slice.call(this.list.children)[this.draggingColumnIndex];
-            console.log(this.draggingEle)
             this.draggingEle.classList.add('dragging');
             this.placeholder = document.createElement('div');
             this.placeholder.classList.add('placeholder');
