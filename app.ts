@@ -2,10 +2,10 @@ import { dragDropTable } from "./typescript/dragDropTable.js";
 import { alert } from "./typescript/alert.js";
 import { dragElement } from "./typescript/dragElement.js";
 
-const columen_table = document.querySelector(".canvas_table") as HTMLTableElement
+let columen_table = document.querySelector(".canvas_table") as HTMLTableElement
 
-const ative_element = document.activeElement
-const element = ative_element.querySelector("#alert_box");
+// let ative_element = document.activeElement
+
 
 export class Test
 {
@@ -19,16 +19,19 @@ export class Test
     }
 
 
-    alert_call() : void
+    alert_call(element) : void
     {
-        console.log("alertBox")
-        if(!element)
+        console.log(element)
+        if(element)
         {
-                const alert_box = new alert(ative_element,{
+            
+                let alert_box = new alert(element,{
                 Header:"Header",
                 Title:"Title",
                 Message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacus nisi, accumsan id lacus"
             }).create();
+
+            console.log(alert_box)
           return  new dragElement(alert_box, alert_box.querySelector('.form-header')).create();
       }
     }
@@ -36,10 +39,18 @@ export class Test
 
 
 
-// columen_table.querySelectorAll('.arrow_left_right').forEach((headerCell) => {
-    //  headerCell.classList.add('draggable');
+let alertMessage = document.querySelectorAll("#alertMessage");
+alertMessage.forEach(element => {
+    console.log(element)
+    element.addEventListener('click', () => new Test().alert_call(element));
+})
 
-columen_table.querySelectorAll('.arrow_left_right').forEach((headerCell) => {
-        headerCell.classList.add('draggable');
-        headerCell.addEventListener('mousedown', (event) => new dragDropTable(columen_table).mouseDownHandler(event));
-});
+
+
+    
+
+
+columen_table.addEventListener('mousedown', (event) => new dragDropTable(columen_table).mouseDownHandler(event));
+
+
+

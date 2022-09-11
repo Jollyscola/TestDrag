@@ -24,6 +24,8 @@ export class alert implements EventListenerObject{
 
     constructor(alert_container,options){
         this.options = options;
+        console.log(alert_container)
+        this.alert_container = alert_container;
 
         const alert_box = document.createElement("div");
         const alert_title = document.createElement("div");
@@ -42,17 +44,19 @@ export class alert implements EventListenerObject{
         alert_box.style.display = "block";
         alert_box.setAttribute("id","alert_box");
         this.alert_box = alert_box;
-        if(alert_container)
+        if(this.alert_container)
         {
-                alert_container.parentNode.insertBefore(this.alert_box,this.alert_container.nextSibling)
-                this.alert_container = alert_container;
+                this.alert_container.parentNode.insertBefore(this.alert_box,this.alert_container.nextSibling)
         }
      
 
         this.update({...options});
     }
     handleEvent(object: Event): void {
-        throw new Error("Method not implemented.");
+       
+        if(object.type == "click"){
+            this.alert_box.remove();
+        }
     }
 
 
@@ -96,9 +100,7 @@ export class alert implements EventListenerObject{
     alertclose() : HTMLElement{
         const button = document.createElement("div");
         button.setAttribute("class", "alert_close");
-        button.addEventListener("click", () => {
-          this.alert_box.remove();
-        })
+        button.addEventListener("click",this)
 
         return button
     }
@@ -116,9 +118,7 @@ export class alert implements EventListenerObject{
         const button = document.createElement("BUTTON");
         const text = document.createTextNode("Ok");
         button.classList.add("btn-5")
-        button.addEventListener("click", () => {
-            this.alert_box.remove();
-        })
+        button.addEventListener("click",this)
         button.appendChild(text)
         this.alert_button.appendChild(button)
         this.alert_row.appendChild(this.alert_button)

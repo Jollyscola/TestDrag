@@ -51,7 +51,7 @@ export class dragDropTable implements EventListenerObject
           
         } else if(object.type == "mouseup")
         {   
-            //  this.mouseUpHandler()
+             this.mouseUpHandler()
     
         }
     }
